@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Tapankumar Trivedi | Associate Professor</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#0f172a', // Navy Blue
+                        'primary-light': '#1e293b',
+                        'accent': '#0d9488', // Dark Teal
+                        'accent-hover': '#0f766e',
+                        'bg-light': '#f8fafc',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'serif': ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for a clean academic aesthetic */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+            color: #0f172a;
+        }
+        .section-padding {
+            padding: 4rem 2rem;
+        }
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #0d9488;
+            border-bottom: 2px solid #0d9488;
+        }
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .btn-primary {
+            background-color: #0d9488;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary:hover {
+            background-color: #0f766e;
+        }
+        .btn-outline {
+            border: 1px solid #0f172a;
+            color: #0f172a;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background-color: #0f172a;
+            color: white;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 4px solid #0d9488;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            font-family: 'Merriweather', serif;
+        }
+        .separator {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #cbd5e1, transparent);
+            margin: 2rem 0;
+        }
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Name -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" onclick="showPage('home')" class="font-serif font-bold text-xl text-primary-dark">
+                        Dr. Tapankumar Trivedi
+                    </a>
+                </div>
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-6 overflow-x-auto nav-container whitespace-nowrap">
+                    <a href="#" onclick="showPage('home')" class="nav-link active text-gray-700 text-sm font-medium py-2">Home</a>
+                    <a href="#" onclick="showPage('about')" class="nav-link text-gray-700 text-sm font-medium py-2">About</a>
+                    <a href="#" onclick="showPage('research')" class="nav-link text-gray-700 text-sm font-medium py-2">Research</a>
+                    <a href="#" onclick="showPage('publications')" class="nav-link text-gray-700 text-sm font-medium py-2">Publications</a>
+                    <a href="#" onclick="showPage('projects')" class="nav-link text-gray-700 text-sm font-medium py-2">Projects</a>
+                    <a href="#" onclick="showPage('teaching')" class="nav-link text-gray-700 text-sm font-medium py-2">Teaching</a>
+                    <a href="#" onclick="showPage('students')" class="nav-link text-gray-700 text-sm font-medium py-2">Students</a>
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 text-sm font-medium py-2 focus:outline-none">More <i class="fas fa-chevron-down text-xs ml-1"></i></button>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 hidden group-hover:block border border-gray-100">
+                            <a href="#" onclick="showPage('laboratory')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Laboratory</a>
+                            <a href="#" onclick="showPage('awards')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Awards & Recognition</a>
+                            <a href="#" onclick="showPage('activities')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Professional Activities</a>
+                            <a href="#" onclick="showPage('media')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Media & Gallery</a>
+                            <a href="#" onclick="showPage('downloads')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Downloads</a>
+                            <a href="#" onclick="showPage('opportunities')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Opportunities</a>
+                            <a href="#" onclick="showPage('blog')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Blog / News</a>
+                            <a href="#" onclick="showPage('contact')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 absolute w-full max-h-screen overflow-y-auto shadow-lg z-50">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Home</a>
+                <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">About</a>
+                <a href="#" onclick="showPage('research'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Research</a>
+                <a href="#" onclick="showPage('publications'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Publications</a>
+                <a href="#" onclick="showPage('projects'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Projects</a>
+                <a href="#" onclick="showPage('teaching'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Teaching</a>
+                <a href="#" onclick="showPage('students'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Students</a>
+                <a href="#" onclick="showPage('contact'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+        
+        <!-- ==================== HOME PAGE ==================== -->
+        <div id="page-home" class="page-content active">
+            <!-- Hero Section -->
+            <section class="bg-primary-dark text-white py-20 relative overflow-hidden">
+                <!-- Abstract decorative element -->
+                <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-accent rounded-full opacity-10 blur-3xl pointer-events-none"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="md:w-1/3 flex justify-center">
+                            <!-- Photograph -->
+                            <div class="w-64 h-64 rounded-full bg-gray-200 border-4 border-accent overflow-hidden flex items-center justify-center text-gray-500 shadow-xl">
+                                <img src="https://placehold.co/600x600/f8fafc/334155?text=Photo+600x600" alt="Dr. Tapankumar Trivedi" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 text-center md:text-left">
+                            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">Dr. Tapankumar Trivedi</h1>
+                            <h2 class="text-2xl text-accent font-medium mb-2">Associate Professor (Senior Member, IEEE)</h2>
+                            <p class="text-lg text-gray-300 mb-6">Department of Electrical Engineering<br>Marwadi University, Rajkot, Gujarat, India (NAAC A+ Accredited)</p>
+                            
+                            <div class="bg-primary-light p-5 rounded-lg border-l-4 border-accent inline-block mb-8 shadow-lg">
+                                <p class="text-xl italic font-serif text-gray-200">
+                                    "Advancing Sustainable Energy Systems through Intelligent Control, Power Electronics, and Deep Learning"
+                                </p>
+                            </div>
+
+                            <div class="flex flex-wrap justify-center md:justify-start gap-5">
+                                <a href="https://scholar.google.com/citations?user=FM9mxyYAAAAJ" target="_blank" class="text-gray-300 hover:text-accent transition-colors" title="Google Scholar"><i class="fa-brands fa-google-scholar fa-2xl"></i></a>
+                                <a href="https://www.scopus.com/authid/detail.uri?authorId=57193918065" target="_blank" class="text-gray-300 hover:text-accent transition-colors" title="Scopus"><i class="fa-solid fa-book-open fa-2xl"></i></a>
+                                <a href="mailto:trivedi.tapan2007@gmail.com" class="text-gray-300 hover:text-accent transition-colors" title="Email"><i class="fa-solid fa-envelope fa-2xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Biography & Highlights Section -->
+            <section class="section-padding bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                        <div class="md:col-span-2">
+                            <h2 class="text-3xl font-bold mb-6 text-primary-dark border-b-2 border-accent pb-2 inline-block">Biography</h2>
+                            <p class="text-lg text-gray-700 mb-4 text-justify">
+                                Dr. Tapankumar Trivedi is an electrical engineering academic with over 17 years of extensive teaching, research, and curriculum leadership experience. He currently serves as an Associate Professor in the Department of Electrical Engineering at Marwadi University, Rajkot. He earned his Ph.D. from Charotar University of Science and Technology in 2019, focusing on the Direct Power Control of Unified Power Quality Conditioners, and his M.Tech. from IIT Roorkee in 2012.
+                            </p>
+                            <p class="text-lg text-gray-700 mb-6 text-justify">
+                                His research spans advanced power electronic converter design, microgrid control, and the integration of deep learning techniques for power quality diagnostics. He is the Principal Investigator for an active deep learning project funded by the Government of Gujarat and is an active reviewer for premier IEEE transactions. Dr. Trivedi is a Senior Member of IEEE.
+                            </p>
+                            <a href="#" onclick="showPage('about')" class="text-accent font-medium hover:underline">Read Full Biography &rarr;</a>
+                        </div>
+                        <div class="card p-6 bg-gray-50">
+                            <h3 class="text-xl font-bold mb-4 text-primary-dark"><i class="fas fa-bullseye text-accent mr-2"></i>Key Research Areas</h3>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-accent mt-1 mr-2"></i> Power Electronic Converter Design</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-accent mt-1 mr-2"></i> Direct Power Control & Power Quality</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-accent mt-1 mr-2"></i> Microgrid Control Architectures</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-accent mt-1 mr-2"></i> AI & Deep Learning for Energy Systems</li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-accent mt-1 mr-2"></i> Hardware-in-the-Loop (HIL) Simulation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Statistics -->
+            <section class="section-padding bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold mb-10 text-center text-primary-dark">Academic Impact</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="card stat-card">
+                            <div class="stat-number">17+</div>
+                            <div class="text-gray-500 uppercase text-sm font-semibold mt-2">Years Teaching</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-number">12+</div>
+                            <div class="text-gray-500 uppercase text-sm font-semibold mt-2">SCOPUS/WOS Papers</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-number">396</div>
+                            <div class="text-gray-500 uppercase text-sm font-semibold mt-2">Google Scholar Citations</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-number">4</div>
+                            <div class="text-gray-500 uppercase text-sm font-semibold mt-2">Ph.D. Scholars Guided</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-number">4</div>
+                            <div class="text-gray-500 uppercase text-sm font-semibold mt-2">Springer Chapters</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-number">4</div>
+                            <div class="text-gray-500 uppercase text-sm font-semibold mt-2">IP & Patents</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-number">3</div>
+                            <div class="text-gray-500 uppercase text-sm font-semibold mt-2">Funded Projects</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-number">10+</div>
+                            <div class="text-gray-500 uppercase text-sm font-semibold mt-2">M.Tech Guided</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== ABOUT PAGE ==================== -->
+        <div id="page-about" class="page-content">
+             <section class="bg-primary-dark text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold">About Me</h1>
+                </div>
+            </section>
+            <section class="section-padding">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                        <div class="md:col-span-2 space-y-8">
+                            <div>
+                                <h2 class="text-2xl font-bold text-primary-dark mb-4 border-b-2 border-accent pb-2 inline-block">Detailed Biography</h2>
+                                <p class="text-gray-700 text-justify mb-4">
+                                    Dr. Tapankumar Trivedi obtained his Ph.D. in Electrical Engineering from Charotar University of Science and Technology in 2019, successfully defending his thesis on the "Direct Power Control of Unified Power Quality Conditioner". Prior to his doctoral studies, he earned his Master of Technology (M.Tech.) from the prestigious Indian Institute of Technology (IIT) Roorkee in 2012, specializing in Power Electronics and Electrical Drives, where his dissertation focused on Multiphase Multilevel Inverters for Induction Motor Drives.
+                                </p>
+                                <p class="text-gray-700 text-justify mb-4">
+                                    Presently, he is an Associate Professor at Marwadi University, serving as the Section Head for the M.Tech. program in Power Electronics and Electrical Drives. His responsibilities extend beyond teaching to comprehensive curriculum development aligned with NBA and NAAC guidelines. He is an active researcher, having secured government grants as a Principal Investigator, and is dedicated to bridging the gap between theoretical knowledge and real-time hardware implementation.
+                                </p>
+                            </div>
+                            
+                            <div class="separator"></div>
+
+                            <div>
+                                <h2 class="text-2xl font-bold text-primary-dark mb-4 border-b-2 border-accent pb-2 inline-block">Teaching Philosophy</h2>
+                                <p class="text-gray-700 text-justify mb-4">
+                                    My teaching philosophy aims to deliver rigorous yet accessible instruction in Power Electronics, Power Systems, and AI-Driven Energy Management at both undergraduate and postgraduate levels. I strongly believe in a pedagogical approach that integrates robust theoretical foundations with extensive hardware lab work—including Hardware-in-the-Loop (HIL) simulation and rapid control prototyping. This dual approach ensures that students are not only academically proficient but are also thoroughly prepared for dynamic research and industrial roles.
+                                </p>
+                            </div>
+
+                            <div class="separator"></div>
+
+                            <div>
+                                <h2 class="text-2xl font-bold text-primary-dark mb-4 border-b-2 border-accent pb-2 inline-block">Research Vision</h2>
+                                <p class="text-gray-700 text-justify mb-4">
+                                    My near-term research agenda centers on three key pillars: (1) Intelligent power quality monitoring utilizing deep learning models for smart grids and industrial microgrids; (2) Advanced converter control strategies to facilitate seamless renewable energy integration; and (3) AI-assisted fault detection mechanisms for power electronic drives, specifically aimed at electric vehicle (EV) applications. I continuously seek to pursue national funding (DST-SERB, GCSST) and international collaborations to establish a competitive, forward-thinking research group.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar / Timeline -->
+                        <div>
+                            <div class="card p-6 mb-6">
+                                <h3 class="text-xl font-bold text-primary-dark mb-4 border-b pb-2">Career & Academic Timeline</h3>
+                                <div class="relative border-l-2 border-accent pl-4 ml-2 space-y-6">
+                                    <div class="relative">
+                                        <div class="absolute -left-[23px] bg-accent h-4 w-4 rounded-full border-2 border-white"></div>
+                                        <h4 class="font-bold text-primary-dark">Associate Professor</h4>
+                                        <p class="text-sm text-gray-500">Jan 2023 - Present | Marwadi University</p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="absolute -left-[23px] bg-gray-300 h-4 w-4 rounded-full border-2 border-white"></div>
+                                        <h4 class="font-bold text-primary-dark">Ph.D. in Electrical Engineering</h4>
+                                        <p class="text-sm text-gray-500">2019 | Charotar University</p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="absolute -left-[23px] bg-gray-300 h-4 w-4 rounded-full border-2 border-white"></div>
+                                        <h4 class="font-bold text-primary-dark">Assistant Professor</h4>
+                                        <p class="text-sm text-gray-500">Aug 2014 - Dec 2022 | Marwadi University</p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="absolute -left-[23px] bg-gray-300 h-4 w-4 rounded-full border-2 border-white"></div>
+                                        <h4 class="font-bold text-primary-dark">M.Tech. in Electrical Engineering</h4>
+                                        <p class="text-sm text-gray-500">2012 | IIT Roorkee</p>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="absolute -left-[23px] bg-gray-300 h-4 w-4 rounded-full border-2 border-white"></div>
+                                        <h4 class="font-bold text-primary-dark">Lecturer</h4>
+                                        <p class="text-sm text-gray-500">Aug 2007 - Jul 2014 | LDRP Institute of Technology</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== RESEARCH PAGE ==================== -->
+        <div id="page-research" class="page-content">
+            <section class="bg-primary-dark text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold">Research Domains</h1>
+                    <p class="mt-2 text-gray-300">Innovating at the intersection of Power Electronics, Smart Grids, and Deep Learning.</p>
+                </div>
+            </section>
+            <section class="section-padding">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <!-- Research Area 1 -->
+                    <div class="card mb-10 overflow-hidden">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-100 min-h-[250px] flex items-center justify-center border-r border-gray-200">
+                                <img src="https://placehold.co/400x300/e2e8f0/475569?text=AI+in+Energy" alt="AI in Energy" class="w-full h-full object-cover">
+                            </div>
+                            <div class="md:w-2/3 p-8">
+                                <h2 class="text-2xl font-bold text-primary-dark mb-2">AI for Power Quality & Energy Systems</h2>
+                                <p class="text-gray-700 mb-4"><strong>Description:</strong> Leveraging Artificial Intelligence to modernize grid monitoring. Developing robust Convolutional Neural Networks (CNN) and transfer learning models for real-time classification of complex power quality disturbances.</p>
+                                <p class="text-gray-700 mb-4"><strong>Current Work:</strong> Leading the <em>PowerNetIQ</em> project funded by the Govt. of Gujarat to build intelligent power quality monitoring systems for smart grids and industrial microgrids.</p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-medium">Deep Learning</span>
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-medium">Power Quality</span>
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-medium">Fault Diagnosis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Research Area 2 -->
+                    <div class="card mb-10 overflow-hidden">
+                        <div class="flex flex-col md:flex-row-reverse">
+                            <div class="md:w-1/3 bg-gray-100 min-h-[250px] flex items-center justify-center border-l border-gray-200">
+                                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Power+Electronics" alt="Power Electronics" class="w-full h-full object-cover">
+                            </div>
+                            <div class="md:w-2/3 p-8">
+                                <h2 class="text-2xl font-bold text-primary-dark mb-2">Power Electronics & Direct Power Control</h2>
+                                <p class="text-gray-700 mb-4"><strong>Description:</strong> Design and advanced control of highly efficient power conversion systems. This involves sliding mode-based direct power control, multilevel inverters, and unified power quality conditioners.</p>
+                                <p class="text-gray-700 mb-4"><strong>Current Work:</strong> Developing advanced converter control strategies for seamless renewable energy (Solar PV) integration and electric vehicle (EV) charging topologies.</p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded font-medium">Direct Power Control</span>
+                                    <span class="bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded font-medium">Active Power Filters</span>
+                                    <span class="bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded font-medium">Multilevel Inverters</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Research Area 3 -->
+                    <div class="card mb-10 overflow-hidden">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-100 min-h-[250px] flex items-center justify-center border-r border-gray-200">
+                                <img src="https://placehold.co/400x300/e2e8f0/475569?text=HIL+Simulation" alt="HIL Simulation" class="w-full h-full object-cover">
+                            </div>
+                            <div class="md:w-2/3 p-8">
+                                <h2 class="text-2xl font-bold text-primary-dark mb-2">Microgrids & Hardware-in-the-Loop Simulation</h2>
+                                <p class="text-gray-700 mb-4"><strong>Description:</strong> Validating complex control architectures for AC and DC microgrids using real-time simulation tools. Ensuring grid stability and resilience with advanced prototyping hardware.</p>
+                                <p class="text-gray-700 mb-4"><strong>Current Work:</strong> Incorporating industry-standard tools (dSPACE 1104, TI C2000, OPAL RT-LAB 4500) for the physical verification of prototypes and digital twin concepts.</p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded font-medium">OPAL RT-LAB 4500</span>
+                                    <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded font-medium">dSPACE</span>
+                                    <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded font-medium">Microgrid Architectures</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== PUBLICATIONS PAGE ==================== -->
+        <div id="page-publications" class="page-content">
+             <section class="bg-primary-dark text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                    <div>
+                        <h1 class="text-4xl font-bold">Publications & IP</h1>
+                        <p class="mt-2 text-gray-300">12+ SCOPUS/WOS Papers | 4 Springer Chapters</p>
+                    </div>
+                    <div class="hidden md:flex gap-4">
+                        <a href="https://scholar.google.com/citations?user=FM9mxyYAAAAJ" target="_blank" class="btn-primary"><i class="fa-brands fa-google-scholar"></i> Scholar Profile</a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section-padding">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <h2 class="text-2xl font-bold text-primary-dark mb-6 border-b-2 border-accent pb-2 inline-block">Selected Journal Papers</h2>
+                    <div class="space-y-4 mb-12">
+                        <!-- Paper 1 -->
+                        <div class="p-5 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition pl-5 border-l-4 border-l-accent">
+                            <p class="text-gray-800 mb-2">
+                                U. Sipai, R. Jadeja, N. Kothari, <strong>T. Trivedi</strong>, K.K. Ram. "Deep transfer learning for classification of power quality disturbances." <em>Scientific Reports</em>, Vol. 15, Art. 34583, 2025.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm">
+                                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded border border-gray-300 font-medium">Impact Factor: 3.9</span>
+                                <span class="text-gray-500"><i class="fas fa-building mr-1"></i> Nature Portfolio</span>
+                            </div>
+                        </div>
+
+                        <!-- Paper 2 -->
+                        <div class="p-5 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition pl-5 border-l-4 border-l-accent">
+                            <p class="text-gray-800 mb-2">
+                                <strong>T. Trivedi</strong>, R. Jadeja, P. Bhatt, C. Long, P. Sanjeevikumar, A. Ved. "Sliding mode-based direct power control of unified power quality conditioner." <em>Heliyon</em>, Vol. 10, e39597, 2024.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm">
+                                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded border border-gray-300 font-medium">Impact Factor: 3.6</span>
+                                <span class="text-gray-500"><i class="fas fa-building mr-1"></i> Cell Press</span>
+                            </div>
+                        </div>
+
+                        <!-- Paper 3 -->
+                        <div class="p-5 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition">
+                            <p class="text-gray-800 mb-2">
+                                R. Jadeja, <strong>T. Trivedi</strong>, J. Surve. "Survivor detection for post-earthquake rescue using deep learning algorithms." <em>Scientific Reports</em>, Vol. 14, Art. 25047, 2024.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm">
+                                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded border border-gray-300 font-medium">Impact Factor: 3.9</span>
+                            </div>
+                        </div>
+
+                        <!-- Paper 4 -->
+                        <div class="p-5 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition">
+                            <p class="text-gray-800 mb-2">
+                                U. Sipai, R. Jadeja, N. Kothari, <strong>T. Trivedi</strong> et al. "DWT and Machine Learning Techniques for Power Quality Disturbance Classification." <em>IEEE Access</em>, Vol. 12, pp. 95472–95486, 2024.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm">
+                                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded border border-gray-300 font-medium">Impact Factor: 3.7</span>
+                                <span class="text-gray-500"><i class="fas fa-building mr-1"></i> IEEE</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Paper 5 -->
+                        <div class="p-5 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition">
+                            <p class="text-gray-800 mb-2">
+                                R. Jadeja, A. D. Ved, S. K. Chauhan, <strong>T. Trivedi</strong>. "Random carrier frequency PWM for grid-connected solar inverter." <em>Electrical Engineering</em>, Vol. 102, pp. 1755–1767, 2020.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm">
+                                <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded border border-gray-300 font-medium">Impact Factor: 1.6</span>
+                                <span class="text-gray-500"><i class="fas fa-building mr-1"></i> Springer</span>
+                            </div>
+                        </div>
+
+                        <!-- Paper 6 -->
+                        <div class="p-5 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition">
+                            <p class="text-gray-800 mb-2">
+                                <strong>T. Trivedi</strong>, R. Jadeja, P. Bhatt. "Improved Direct Power Control of Shunt Active Power Filter." <em>Journal of Electrical Engineering and Technology</em>, Vol. 12, pp. 1124–1136, 2017.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 class="text-2xl font-bold text-primary-dark mb-6 border-b-2 border-accent pb-2 inline-block">Book Chapters (SCOPUS/WOS Indexed)</h2>
+                    <div class="space-y-4 mb-12">
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li>A. Vekariya, <strong>T. Trivedi</strong>, R. Jadeja, P. Bhatt. "LookupTable Approach of Direct Power Control for Three-Phase DC/AC Inverter." <em>Artificial Intelligence and Evolutionary Computations in Engineering Systems, Springer</em>, vol. 517, pp. 445–465, 2017.</li>
+                            <li>R. Jadeja, A. Yadav, <strong>T. Trivedi</strong> et al. "DSP-Based Sensorless Vector-Controlled Induction Motor Drive." <em>Springer</em>, vol. 517, pp. 845–859, 2017.</li>
+                            <li>R. Jadeja, A. Ved, <strong>T. Trivedi</strong>, G. Khanduja. "Control of Power Electronic Converters in AC Microgrid." <em>Microgrid Architectures, Control and Protection Methods, Springer</em>, pp. 329–355, 2019.</li>
+                            <li>R. Jadeja, N. Bizon, <strong>T. Trivedi</strong> et al. "Power Quality Issues and Mitigation in Microgrid." <em>Microgrid Architectures, Springer</em>, pp. 719–748, 2019.</li>
+                        </ul>
+                    </div>
+
+                    <h2 class="text-2xl font-bold text-primary-dark mb-6 border-b-2 border-accent pb-2 inline-block">Intellectual Property & Patents</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 border border-teal-200 bg-teal-50 rounded-lg">
+                            <p class="font-bold text-primary-dark"><i class="fas fa-lightbulb text-accent mr-2"></i> Patent (Published)</p>
+                            <p class="text-gray-800 mt-2"><strong>Smart Multicolor Ink Dispensing Machine for Markers</strong></p>
+                            <p class="text-gray-600 text-sm mt-1">Application No: 202321030206 | Published: 24/11/2023<br>Applicant: Marwadi University</p>
+                        </div>
+                        <div class="p-4 border border-gray-200 bg-gray-50 rounded-lg">
+                            <p class="font-bold text-primary-dark"><i class="fas fa-copyright text-accent mr-2"></i> Software Copyrights</p>
+                            <ul class="text-sm text-gray-700 mt-2 space-y-2">
+                                <li>• Wavelet Transform based Mix-order Statistical Feature Extraction for PQ Disturbance Detection (Reg: SW-18026/2024)</li>
+                                <li>• Power Quality Disturbance Dataset Generator Application (Reg: SW-17962/2023)</li>
+                                <li>• DWT-based Statistical Feature Extraction for PQ Disturbance Classification (Reg: SW-17699/2023)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== PROJECTS PAGE ==================== -->
+        <div id="page-projects" class="page-content">
+            <section class="bg-primary-dark text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold">Research Projects & Grants</h1>
+                </div>
+            </section>
+            <section class="section-padding">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <h2 class="text-2xl font-bold text-primary-dark mb-6 border-b-2 border-accent pb-2 inline-block">Funded Projects</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                        
+                        <!-- Project 1 (Active) -->
+                        <div class="card p-6 flex flex-col h-full border-t-4 border-green-500">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-primary-dark">PowerNetIQ: Deep Learning for Power Quality Monitoring</h3>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-bold whitespace-nowrap">Active (2025-2027)</span>
+                            </div>
+                            <ul class="text-sm text-gray-700 space-y-2 mb-4 flex-grow">
+                                <li><strong>Role:</strong> Principal Investigator (PI)</li>
+                                <li><strong>Funding Agency:</strong> Knowledge Consortium of Gujarat, Government of Gujarat</li>
+                                <li><strong>Description:</strong> Developing CNN and transfer learning models for real-time classification of power quality disturbances in the grid.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Project 2 (Completed) -->
+                        <div class="card p-6 flex flex-col h-full border-t-4 border-accent">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-primary-dark">Rescue Support Robotics for Earthquake Situations</h3>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded font-bold whitespace-nowrap">Completed (2021-2024)</span>
+                            </div>
+                            <ul class="text-sm text-gray-700 space-y-2 mb-4 flex-grow">
+                                <li><strong>Role:</strong> Co-Principal Investigator (Co-PI)</li>
+                                <li><strong>Funding Agency:</strong> GUJCOST, Govt. of Gujarat</li>
+                                <li><strong>Outcome:</strong> Developed deep learning survivor detection algorithms, leading to a high-impact publication in <em>Scientific Reports</em> (IF 3.9).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Project 3 (Completed) -->
+                        <div class="card p-6 flex flex-col h-full border-t-4 border-accent">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-primary-dark">Evaluation of Current Control & Direct Power Control Algorithm</h3>
+                                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded font-bold whitespace-nowrap">Completed (2016-2018)</span>
+                            </div>
+                            <ul class="text-sm text-gray-700 space-y-2 mb-4 flex-grow">
+                                <li><strong>Role:</strong> Co-Principal Investigator (Co-PI)</li>
+                                <li><strong>Funding Agency:</strong> GCSST, Govt. of Gujarat</li>
+                                <li><strong>Outcome:</strong> Focus on Shunt Active Power Filters. Evaluated advanced current control strategies with findings published in a SCOPUS-indexed journal.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== TEACHING PAGE ==================== -->
+        <div id="page-teaching" class="page-content">
+             <section class="bg-primary-dark text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold">Teaching & Curriculum Leadership</h1>
+                </div>
+            </section>
+            <section class="section-padding">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div>
+                            <h2 class="text-2xl font-bold text-primary-dark mb-6 border-b-2 border-accent pb-2 inline-block">Courses Taught</h2>
+                            
+                            <p class="text-gray-700 mb-4 text-sm">Extensive experience teaching UG and PG level courses over 17 years at Marwadi University and LDRP Institute of Technology.</p>
+                            
+                            <ul class="list-none space-y-2 text-gray-800 font-medium">
+                                <li><i class="fas fa-book text-accent mr-2"></i> Power Electronics</li>
+                                <li><i class="fas fa-book text-accent mr-2"></i> Electrical Drives</li>
+                                <li><i class="fas fa-book text-accent mr-2"></i> Advanced Control Systems</li>
+                                <li><i class="fas fa-book text-accent mr-2"></i> Power Quality</li>
+                                <li><i class="fas fa-book text-accent mr-2"></i> Signals & Systems</li>
+                                <li><i class="fas fa-book text-accent mr-2"></i> Renewable Energy Systems</li>
+                                <li><i class="fas fa-book text-accent mr-2"></i> Microcontroller Applications</li>
+                            </ul>
+
+                            <div class="mt-8 p-5 bg-teal-50 border border-teal-200 rounded-lg">
+                                <h3 class="font-bold text-primary-dark mb-2"><i class="fas fa-sitemap text-accent mr-2"></i>Curriculum Leadership</h3>
+                                <p class="text-sm text-gray-700">Currently serving as Section Head for the M.Tech. program in Power Electronics and Electrical Drives. Responsible for course design, syllabus revision, and outcome mapping aligned with NBA/NAAC criteria.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h2 class="text-2xl font-bold text-primary-dark mb-6 border-b-2 border-accent pb-2 inline-block">Tools & Hardware Integration</h2>
+                            <p class="text-gray-700 mb-4 text-sm">Passionate about project-based learning and incorporating industry-standard tools into the academic curriculum.</p>
+
+                            <h3 class="text-md font-bold text-gray-800 mb-2">Simulation & Control Software</h3>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-gray-100 border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium">MATLAB/Simulink</span>
+                                <span class="bg-gray-100 border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium">SimScape®</span>
+                                <span class="bg-gray-100 border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium">LTspice</span>
+                                <span class="bg-gray-100 border border-gray-300 text-gray-700 px-3 py-1 rounded text-sm font-medium">Deep Learning (CNN)</span>
+                            </div>
+
+                            <h3 class="text-md font-bold text-gray-800 mb-2">Hardware & Prototyping</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-primary-light text-white px-3 py-1 rounded text-sm font-medium">OPAL RT-LAB 4500 (HIL)</span>
+                                <span class="bg-primary-light text-white px-3 py-1 rounded text-sm font-medium">dSPACE 1104</span>
+                                <span class="bg-primary-light text-white px-3 py-1 rounded text-sm font-medium">TI C2000 Microcontroller</span>
+                                <span class="bg-primary-light text-white px-3 py-1 rounded text-sm font-medium">Code Composer Studio</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== STUDENTS PAGE ==================== -->
+        <div id="page-students" class="page-content">
+             <section class="bg-primary-dark text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold">Research Supervision</h1>
+                </div>
+            </section>
+            <section class="section-padding">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <h2 class="text-2xl font-bold text-primary-dark mb-6 border-b-2 border-accent pb-2 inline-block">Ph.D. Scholars</h2>
+                    
+                    <div class="overflow-x-auto bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Scholar Name</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Topic Area</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role & Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Mr. Uvesh Sipai</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Power Quality Disturbance Classification</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Completed</span> (Co-Supervisor)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Mr. Dhirajkumar Shrimali</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Advanced Power Electronic Devices</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Ongoing</span> (Supervisor)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Ms. Fatema Unnisa</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">EV Charger Topology</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Ongoing</span> (Supervisor)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Mr. Nirav Tolia</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Faulty Classification in Multiphase machines</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Ongoing</span> (Supervisor)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-10">
+                        <h2 class="text-xl font-bold text-primary-dark mb-4 border-b-2 border-gray-200 pb-2 inline-block">M.Tech Dissertations</h2>
+                        <p class="text-gray-700">Successfully guided <strong>10+ M.Tech. dissertations</strong> specifically focused on power converter design and advanced control methodologies.</p>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <div id="page-laboratory" class="page-content">
+             <section class="section-padding text-center">
+                 <h2 class="text-3xl font-bold text-primary-dark">Laboratory Facilities</h2>
+                 <p class="mt-4 text-gray-600">Details regarding the OPAL RT-LAB 4500 (HIL), dSPACE, and TI C2000 hardware setups.</p>
+             </section>
+        </div>
+        
+        <div id="page-awards" class="page-content">
+             <section class="bg-primary-dark text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold">Awards, Recognitions & Memberships</h1>
+                </div>
+            </section>
+             <section class="section-padding">
+                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                     <ul class="space-y-4 text-gray-800 text-lg">
+                         <li><i class="fas fa-award text-accent mr-3"></i> <strong>Senior Member, IEEE</strong> (Membership No. 92014201)</li>
+                         <li><i class="fas fa-award text-accent mr-3"></i> Member, IEEE Industrial Electronics Society (IES) — Technical Committee on Power Electronics</li>
+                         <li><i class="fas fa-award text-accent mr-3"></i> International Engineering Educator — IUCEE (2016)</li>
+                         <li><i class="fas fa-award text-accent mr-3"></i> NPTEL Certification: Design of Power Electronic Converters (Score: 93%)</li>
+                         <li><i class="fas fa-award text-accent mr-3"></i> University Coordinator for Coursera (2020–2023) — Marwadi University received <em>Coursera Emerging Star of the Year Award 2022</em>.</li>
+                     </ul>
+                 </div>
+             </section>
+        </div>
+
+        <div id="page-activities" class="page-content">
+             <section class="section-padding">
+                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                     <h2 class="text-3xl font-bold text-primary-dark mb-6">Professional Activities</h2>
+                     
+                     <h3 class="text-xl font-bold text-gray-800 mb-3">Peer Reviewer For</h3>
+                     <div class="flex flex-wrap gap-2 mb-8">
+                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">IEEE Trans. on Power Electronics</span>
+                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">IEEE Trans. on Industrial Electronics</span>
+                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">IEEE Access</span>
+                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Nature Scientific Reports</span>
+                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">IET Generation Transmission & Distribution</span>
+                     </div>
+
+                     <h3 class="text-xl font-bold text-gray-800 mb-3">International Activities</h3>
+                     <ul class="list-disc list-inside text-gray-700 space-y-2">
+                         <li>ERASMUS+ Teaching Mobility Program — National University of Science and Technology (Pitesti Center), Romania</li>
+                         <li>Organized IEEE Gujarat Section IES/IAS/PELS Joint Chapter STTP on Power Electronics for EVs & Renewable Energy, 2025</li>
+                         <li>Organizing Special Session: Digital Twins and AI-Based Control for Industrial Microgrids, SEFET-2026, VNIT Nagpur</li>
+                     </ul>
+                 </div>
+             </section>
+        </div>
+
+        <div id="page-media" class="page-content">
+             <section class="section-padding text-center">
+                 <h2 class="text-3xl font-bold text-primary-dark">Media & Gallery</h2>
+                 <p class="mt-4 text-gray-600">Photo gallery of conferences, HIL lab activities, and workshops coming soon.</p>
+             </section>
+        </div>
+
+        <div id="page-downloads" class="page-content">
+             <section class="section-padding text-center">
+                 <h2 class="text-3xl font-bold text-primary-dark">Downloads</h2>
+                 <p class="mt-4 text-gray-600">Download links for detailed CV and Publication lists will be available here.</p>
+             </section>
+        </div>
+
+        <div id="page-opportunities" class="page-content">
+             <section class="section-padding text-center">
+                 <h2 class="text-3xl font-bold text-primary-dark">Opportunities</h2>
+                 <p class="mt-4 text-gray-600">Prospective Ph.D. scholars interested in Deep Learning for Power Systems or Power Electronics, please contact via email.</p>
+             </section>
+        </div>
+
+        <div id="page-blog" class="page-content">
+             <section class="section-padding text-center">
+                 <h2 class="text-3xl font-bold text-primary-dark">Blog & News</h2>
+                 <p class="mt-4 text-gray-600">Latest updates and achievements.</p>
+             </section>
+        </div>
+
+        <!-- ==================== CONTACT PAGE ==================== -->
+        <div id="page-contact" class="page-content">
+            <section class="bg-primary-dark text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold">Contact</h1>
+                </div>
+            </section>
+            <section class="section-padding">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        
+                        <!-- Contact Info -->
+                        <div>
+                            <h2 class="text-2xl font-bold text-primary-dark mb-6">Get in Touch</h2>
+                            <div class="space-y-5 text-gray-700 text-lg">
+                                <p class="flex items-start gap-3">
+                                    <i class="fas fa-map-marker-alt text-accent mt-1"></i>
+                                    <span>
+                                        <strong>Dr. Tapankumar Trivedi</strong><br>
+                                        Associate Professor<br>
+                                        Department of Electrical Engineering<br>
+                                        Marwadi University<br>
+                                        Rajkot, Gujarat, India
+                                    </span>
+                                </p>
+                                <p class="flex items-center gap-3">
+                                    <i class="fas fa-envelope text-accent"></i>
+                                    <a href="mailto:trivedi.tapan2007@gmail.com" class="hover:text-accent font-medium">trivedi.tapan2007@gmail.com</a>
+                                </p>
+                                <p class="flex items-center gap-3">
+                                    <i class="fas fa-phone text-accent"></i>
+                                    <span>+91-98794-19809</span>
+                                </p>
+                            </div>
+
+                            <div class="mt-10">
+                                <h3 class="text-lg font-bold text-primary-dark mb-4">Academic Profiles</h3>
+                                <div class="flex gap-4">
+                                    <a href="https://scholar.google.com/citations?user=FM9mxyYAAAAJ" target="_blank" class="text-gray-500 hover:text-accent text-3xl" title="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+                                    <a href="https://www.scopus.com/authid/detail.uri?authorId=57193918065" target="_blank" class="text-gray-500 hover:text-accent text-3xl" title="Scopus"><i class="fa-solid fa-book-open"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Embedded Map & Form Placeholder -->
+                        <div>
+                            <!-- Google Maps iframe placeholder -->
+                            <div class="w-full h-64 bg-gray-200 rounded-lg mb-6 flex items-center justify-center text-gray-500 overflow-hidden shadow-inner">
+                                <span>[Embed Marwadi University Google Map Here]</span>
+                            </div>
+                            
+                            <!-- Google Forms iframe placeholder -->
+                             <div class="w-full h-80 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 overflow-hidden">
+                                <span>[Embed Google Form for Enquiries Here]</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-white py-8 border-t border-gray-700 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm text-gray-400 mb-4 md:mb-0">
+                &copy; <span id="year"></span> Dr. Tapankumar Trivedi. All rights reserved.
+            </p>
+            <div class="flex space-x-4">
+                 <a href="#" onclick="showPage('home')" class="text-sm text-gray-400 hover:text-white">Home</a>
+                 <a href="#" onclick="showPage('publications')" class="text-sm text-gray-400 hover:text-white">Publications</a>
+                 <a href="#" onclick="showPage('contact')" class="text-sm text-gray-400 hover:text-white">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for basic navigation functionality -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+
+            const targetPage = document.getElementById('page-' + pageId);
+            if(targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const navLinks = document.querySelectorAll('.nav-container .nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)) {
+                    link.classList.add('active');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
